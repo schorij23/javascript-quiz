@@ -24,6 +24,7 @@ let questionsArray = [
     let timerInterval;
     let currentQuestion = 0;
     let playerGrade = 0; 
+    let totalQuestions = questionsArray.length;
 
 
     // Select the high scores link
@@ -99,7 +100,10 @@ let questionsArray = [
         clearInterval(timerInterval);
         document.getElementById("question-container").classList.add("hide");
         document.getElementById("score-container").classList.remove("hide");
-        document.getElementById("your-score").textContent = "Your score is: " + playerGrade;
+        // Calculate the percentage score
+        let percentageScore = (playerGrade / totalQuestions) * 100;
+        document.getElementById("your-score").textContent = "Your score: " + percentageScore.toFixed(2) + "%";
+        // document.getElementById("your-score").textContent = "Your score is: " + playerGrade;
   }
     
         
