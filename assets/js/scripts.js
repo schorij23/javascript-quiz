@@ -115,24 +115,38 @@ let questionsArray = [
 
   function viewHighScores() {
     const highScore = [
-        {initials:"", score: "" },
+        {initials:"AB", score: 100 },
+        {initials:"CD", score: 90 },
+        {initials:"EF", score: 80 },
     ];
-    const highScoreL = document.getElementById("highscores-list");
+    const highScoreList = document.getElementById("highscores-list");
+    const highScoreTitle = document.querySelector(".center");
     
     // Clears the existing list
-    highScoreL.innerHTML="";
+    highScoreList.innerHTML="";
     // Display high scores
     highScore.forEach(score => {
         const li = document.createElement("li");
         li.textContent = `${score.initials}: ${score.score}`;
-        highScoreL.appendChild(li);
+        highScoreList.appendChild(li);
     });
+
+    // Update the title with "High-Scores"
+    highScoreTitle.textContent = "High-Scores";
     
   }
+
+    const clearBtn = document.getElementById("clear-btn");
+
+    clearBtn.addEventListener("click", function () {
+    // Remove all list items from the high scores list
+    const highScoreList = document.getElementById("highscores-list");
+    highScoreList.innerHTML = "";
+    });    
   
         const restartBtn = document.getElementById("restart-btn");
 
-        restartBtn.addEventListener("click", function () {
+        restartBtn.addEventListener("click", function (event) {
             // Hide the score container
             document.getElementById("highscores").classList.add("hide");
             
@@ -144,8 +158,6 @@ let questionsArray = [
             playerGrade = 0;
             currentTime = maxTime;
             
-            // Start the quiz again if you want it to start from the beginning
-            // add any other logic you might need for restarting the quiz
         });
   
   
