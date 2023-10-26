@@ -130,7 +130,24 @@ let questionsArray = [
     
   }
   
+        const restartBtn = document.getElementById("restart-btn");
 
+        restartBtn.addEventListener("click", function () {
+            // Hide the score container
+            document.getElementById("highscores").classList.add("hide");
+            
+            // Show the start container
+            document.getElementById("start-container").classList.remove("hide");
+            
+            // Reset necessary variables or states to restart the quiz if needed
+            currentQuestion = 0;
+            playerGrade = 0;
+            currentTime = maxTime;
+            
+            // Start the quiz again if you want it to start from the beginning
+            // add any other logic you might need for restarting the quiz
+        });
+  
   
   
   
