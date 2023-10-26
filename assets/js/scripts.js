@@ -179,6 +179,8 @@ let questionsArray = [
     // Remove all list items from the high scores list
     const highScoreList = document.getElementById("highscores-list");
     highScoreList.innerHTML = "";
+    // Clear the Array
+    highScore = [];
     });    
   
     const restartBtn = document.getElementById("restart-btn");
