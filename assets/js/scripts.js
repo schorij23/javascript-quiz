@@ -144,21 +144,48 @@ let questionsArray = [
     highScoreList.innerHTML = "";
     });    
   
-        const restartBtn = document.getElementById("restart-btn");
+    const restartBtn = document.getElementById("restart-btn");
 
-        restartBtn.addEventListener("click", function (event) {
-            // Hide the score container
-            document.getElementById("highscores").classList.add("hide");
+    restartBtn.addEventListener("click", function () {
+      // Clear the previous timer interval
+      clearInterval(timerInterval);
+    
+      // Reset the timer to its initial value (maxTime)
+      currentTime = maxTime;
+    
+      // Update the timer display with the reset time
+      timerEl.textContent = "Time: " + currentTime;
+    
+      // Hide the score container
+      document.getElementById("highscores").classList.add("hide");
+    
+      // Show the start container
+      document.getElementById("start-container").classList.remove("hide");
+    
+      // Reset necessary variables or states to restart the quiz
+      currentQuestion = 0;
+      playerGrade = 0;
+    });
+    
+    
+    
+
+
+        // const restartBtn = document.getElementById("restart-btn");
+
+        // restartBtn.addEventListener("click", function () {
+        //     // Hide the score container
+        //     document.getElementById("highscores").classList.add("hide");
             
-            // Show the start container
-            document.getElementById("start-container").classList.remove("hide");
+        //     // Show the start container
+        //     document.getElementById("start-container").classList.remove("hide");
             
-            // Reset necessary variables or states to restart the quiz if needed
-            currentQuestion = 0;
-            playerGrade = 0;
-            currentTime = maxTime;
+        //     // Reset necessary variables or states to restart the quiz if needed
+        //     currentQuestion = 0;
+        //     playerGrade = 0;
+        //     currentTime = maxTime;
             
-        });
+        // });
   
   
   
