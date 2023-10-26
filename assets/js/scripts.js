@@ -102,7 +102,7 @@ let questionsArray = [
         document.getElementById("score-container").classList.remove("hide");
         // Calculate the percentage score
         let percentageScore = (playerGrade / totalQuestions) * 100;
-        document.getElementById("your-score").textContent = "Your score: " + percentageScore.toFixed(2) + "%";
+        document.getElementById("your-score").textContent = "Your grade is: " + percentageScore.toFixed(2) + "%";
         // document.getElementById("your-score").textContent = "Your score is: " + playerGrade;
   }
     
@@ -140,9 +140,12 @@ let questionsArray = [
     const userInitials = initialsInput.value;
 
     // Create an object with user initials and their score
-    const userScore = playerGrade; // Get the user's score
-    const userScoreObject = { initials: userInitials, score: userScore };
-
+    const userScoreObject = {
+      initials: userInitials,
+      correctAnswers: playerGrade,
+      totalQuestions: totalQuestions
+  };
+  
     // Push the user's score to the highScore array
     highScore.push(userScoreObject);
 
@@ -162,13 +165,20 @@ let questionsArray = [
   function viewHighScores() {
     const highScoreList = document.getElementById("highscores-list");
     const highScoreTitle = document.querySelector(".center");
+
+
+    // Sort the highScore array by correctAnswers in descending order
+    highScore.sort((a, b) => b.correctAnswers - a.correctAnswers);
     
     // Clears the existing list
     highScoreList.innerHTML="";
     // Display high scores
     highScore.forEach(score => {
         const li = document.createElement("li");
-        li.textContent = `${score.initials}: ${score.score}`;
+
+        const percentageScore = (score.correctAnswers / score.totalQuestions) * 100;
+        li.textContent = `${score.initials}: ${score.correctAnswers} out of ${score.totalQuestions}  (${percentageScore.toFixed(2)}%)`;
+
         highScoreList.appendChild(li);
     });
 
