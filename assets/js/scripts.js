@@ -59,6 +59,12 @@ let questionsArray = [
           // Alert when correct
           displayAlert("Correct", 1000, true);
         } else {
+            // Wrong answer subtrack 10 sec
+            currentTime -= 10;
+            if (currentTime < 0) {
+                // Make sure 0 restarts quiz no negatives
+                currentTime = 0;
+      }
             displayAlert("Wrong", 1000, false);
         }
         setTimeout(function() {
@@ -105,20 +111,35 @@ let questionsArray = [
         document.querySelectorAll(".btn")[index].textContent = answer;
     });  
   }
-  
-  const submitBtn = document.getElementById("submit-btn");
+    let highScore = [];
+    const submitBtn = document.getElementById("submit-btn");
     submitBtn.addEventListener("click", function() {
+     
+    // Get the user's initials from the input field    
+    const initialsInput = document.getElementById("initials");
+    const userInitials = initialsInput.value;
+
+    // Create an object with user initials and their score
+    const userScore = playerGrade; // Get the user's score
+    const userScoreObject = { initials: userInitials, score: userScore };
+
+    // Push the user's score to the highScore array
+    highScore.push(userScoreObject);
+
+    // Sort the highScore array by score in descending order
+    highScore.sort((a, b) => b.score - a.score);
+
+    // Update the high scores display
+    viewHighScores();
+
+
     document.getElementById("score-container").classList.add("hide");
     document.getElementById("highscores").classList.remove("hide");
-    viewHighScores();
+    // viewHighScores();
   });
 
+  
   function viewHighScores() {
-    const highScore = [
-        {initials:"AB", score: 100 },
-        {initials:"CD", score: 90 },
-        {initials:"EF", score: 80 },
-    ];
     const highScoreList = document.getElementById("highscores-list");
     const highScoreTitle = document.querySelector(".center");
     
@@ -149,43 +170,20 @@ let questionsArray = [
     restartBtn.addEventListener("click", function () {
       // Clear the previous timer interval
       clearInterval(timerInterval);
-    
+      
       // Reset the timer to its initial value (maxTime)
       currentTime = maxTime;
-    
       // Update the timer display with the reset time
       timerEl.textContent = "Time: " + currentTime;
-    
+
       // Hide the score container
       document.getElementById("highscores").classList.add("hide");
-    
       // Show the start container
       document.getElementById("start-container").classList.remove("hide");
-    
       // Reset necessary variables or states to restart the quiz
       currentQuestion = 0;
       playerGrade = 0;
     });
-    
-    
-    
-
-
-        // const restartBtn = document.getElementById("restart-btn");
-
-        // restartBtn.addEventListener("click", function () {
-        //     // Hide the score container
-        //     document.getElementById("highscores").classList.add("hide");
-            
-        //     // Show the start container
-        //     document.getElementById("start-container").classList.remove("hide");
-            
-        //     // Reset necessary variables or states to restart the quiz if needed
-        //     currentQuestion = 0;
-        //     playerGrade = 0;
-        //     currentTime = maxTime;
-            
-        // });
   
   
   

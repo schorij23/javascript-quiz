@@ -52,8 +52,13 @@
   }
   
   .start-button{
-float: center;
+    float: center;
 
+  }
+
+  .centered-button {
+    display: block; /* Ensures the button takes the full width of its container */
+    margin: 0 auto; /* Centers the button horizontally */
   }
   h1 {
     margin-bottom: 10px;
