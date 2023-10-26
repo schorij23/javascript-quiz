@@ -29,6 +29,11 @@
     text-align: center;
   }
   
+  article {
+    text-align: center;
+    font-size: 28px;
+  }
+
   ul {
     list-style: none;
   }

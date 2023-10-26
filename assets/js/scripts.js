@@ -25,6 +25,22 @@ let questionsArray = [
     let currentQuestion = 0;
     let playerGrade = 0; 
 
+
+    // Select the high scores link
+    const highScoresLink = document.getElementById("highscores-link");
+    // Select the high scores section
+    const highScoresSection = document.getElementById("highscores");
+
+    // Add a click event listener to the link
+    highScoresLink.addEventListener("click", function(event) {
+        // Prevent link from navigating to a new page)
+        event.preventDefault();
+    // Show the high scores section
+    highScoresSection.classList.remove("hide");
+    document.getElementById("start-container").classList.add("hide");
+
+    });
+
     // Function to create a running timer
     function updateTimer() {
         timerEl.textContent = "Time: " + currentTime;
@@ -44,7 +60,7 @@ let questionsArray = [
         document.getElementById("question-container").classList.remove("hide");
         displayQuestion(questionsArray[currentQuestion]);
     });
-  
+            
         // Select all the buttons on the page
         document.querySelectorAll(".btn").forEach(function (btn) {
         // Loop the buttons and add event listener
