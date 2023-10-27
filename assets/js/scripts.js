@@ -74,7 +74,7 @@ let questionsArray = [
         if (isCorrect) {
           playerGrade++;
           // Alert when correct
-          displayAlert("Correct", 1000, true);
+          displayAlert("You have selected the correct answer", 1000, true);
         } else {
             // Wrong answer subtrack 10 sec
             currentTime -= 10;
@@ -82,7 +82,7 @@ let questionsArray = [
                 // Make sure 0 restarts quiz no negatives
                 currentTime = 0;
       }
-            displayAlert("Wrong", 1000, false);
+            displayAlert("You have selected the wrong answer", 1000, false);
         }
         setTimeout(function() {
           // Move to next question
